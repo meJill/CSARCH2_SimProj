@@ -1,0 +1,65 @@
+<%-include('layouts/bsa-mru-top') -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+
+  
+            <form action="" name="bsa-table">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Main Memory</span>
+                      </div>
+                    <input type="text" name="mm_size" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="input-group-prepend">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" name="mm_type" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              Dropdown button
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="#">Words</a></li>
+                              <li><a class="dropdown-item" href="#">Blocks</a></li>
+                            </ul>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Cache Memory Size</span>
+                      </div>
+                    <input type="text" name="cache_size" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="input-group-prepend">
+                        
+                            <button class="btn btn-secondary dropdown-toggle" name="cache_type" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              Dropdown button
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="#">Words</a></li>
+                              <li><a class="dropdown-item" href="#">Blocks</a></li>
+                            </ul>
+                          
+                      </div>
+                  </div>
+
+                  <div class="input-group d-flex flex-row">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="">Block size</span>
+                    </div>
+                    <input type="text" name="block_size" class="form-control">
+                    <div class="col-lg-1"></div>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="">Set size</span>
+                      </div>
+                    <input type="text" name="set_size" class="form-control">
+                  </div>
+                  <div class="mt-4"></div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
+
+        </div>
+    </div>
+</div>
+
+<%-include('layouts/bsa-mru-bottom') -%>
