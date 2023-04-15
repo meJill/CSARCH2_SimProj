@@ -1,5 +1,4 @@
-$(document).ready(function () {
-  class Block {
+class Block {
     constructor(tag, data) {
       this.tag = tag;
       this.data = data;
@@ -126,18 +125,6 @@ $(document).ready(function () {
         }
       }
   }
-      
-    $(".dropdown-toggle").next(".dropdown-menu").children().on("click", function () {
-        $(this).closest(".dropdown-menu").prev(".dropdown-toggle").text($(this).text());
-    });
-    $("[name='bsa-table']").submit(function (event) {
-        var loginForm = document.forms['bsa-table'];
-        console.log(loginForm.elements.mm_size.value);
-        console.log(loginForm.elements.mm_type.innerText);
-        console.log(loginForm.elements.cache_size.value);
-        console.log(loginForm.elements.cache_type.innerText);
-        console.log(loginForm.elements.block_size.value);
-        console.log(loginForm.elements.set_size.value);
-        event.preventDefault();
-    });
-});
+
+  new_cache = new BlockSetAssociativeCache("Blocks", 4, 2, 4)
+  new_cache.simulate([1,2,3,4,5,4,6,3])
