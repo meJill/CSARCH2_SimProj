@@ -1,9 +1,9 @@
 <%-include('layouts/bsa-mru-top') -%>
 
-<div class="container">
+<div class="px-5">
+  <h1> BSA/MRU Calculator </h1>
     <div class="row">
-        <div class="col-lg-7">
-
+        <div class="col-lg-6 ">
             <form action="" name="bsa-table">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -15,9 +15,11 @@
                             <button class="btn btn-secondary dropdown-toggle" name="mm_type" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               Dropdown button
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <ul role = "listbox" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <!-- <option class = "dropdown-item" value="Words"> Words </option> -->
                               <li><a class="dropdown-item" href="#">Words</a></li>
                               <li><a class="dropdown-item" href="#">Blocks</a></li>
+                              <!-- <option class = "dropdown-item" value="Blocks"> Blocks </option> -->
                             </ul>
                           </div>
                       </div>
@@ -72,14 +74,15 @@
                   </div>
                   <div class="mt-4"></div>
                   <button type="submit" class="btn btn-primary" id="Calculate">Submit</button>
+                  <button href="/download" class= "btn btn-primary" download="test.txt">Download Text File</button>
             </form>
-
+            
         </div>
     </div>
 </div>
 <div id="info"></div>
 <button id="print">Print?</button>
 
-<a href="/download" download="test.txt">Download Text File</a>
+
 
 <%-include('layouts/bsa-mru-bottom') -%>
