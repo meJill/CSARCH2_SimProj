@@ -132,12 +132,31 @@ $(document).ready(function () {
     });
     $("[name='bsa-table']").submit(function (event) {
         var loginForm = document.forms['bsa-table'];
-        console.log(loginForm.elements.mm_size.value);
-        console.log(loginForm.elements.mm_type.innerText);
-        console.log(loginForm.elements.cache_size.value);
-        console.log(loginForm.elements.cache_type.innerText);
-        console.log(loginForm.elements.block_size.value);
-        console.log(loginForm.elements.set_size.value);
+        console.log("Main memory " + loginForm.elements.mm_size.value);
+        console.log("Main memory type: " + loginForm.elements.mm_type.innerText);
+        console.log("Cache size " + loginForm.elements.cache_size.value);
+        console.log("Cache type: " + loginForm.elements.cache_type.innerText);
+        console.log("Block size " + loginForm.elements.block_size.value);
+        console.log("Set size " + loginForm.elements.set_size.value);
         event.preventDefault();
+        new_cache = new BlockSetAssociativeCache(loginForm.elements.mm_type.innerText, parseInt(loginForm.elements.cache_size.value), parseInt(loginForm.elements.set_size.value), parseInt(loginForm.elements.block_size.value))
+        new_cache.simulate([1,2,3,4,5,4,6,3])
+        document.getElementById("hits").innerHTML = new_cache.hits;
+
+        document.getElementById("misses").innerHTML = new_cache.misses;
+
+        document.getElementById("cm").innerHTML = "Cache Memory";
+        var blocksetsize = new_cache.cache_size/new_cache.set_size
+        for (var s = 0; s < new_cache.numSets; s++) {
+          var element = document.createElement("div");
+          element.innerHTML = "Set " + s;
+          $("#cm").append(element);
+          for (var i = 0; i < 2; i++) {
+            var element2 = document.createElement("div");
+            element2.innerHTML = "Block " + new_cache.sets[s].blocks[i].data;
+            $("#cm").append(element2);
+          }
+        }
+
     });
 });
