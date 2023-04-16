@@ -160,6 +160,11 @@ $(document).ready(function () {
         new_cache = new BlockSetAssociativeCache(loginForm.elements.cache_type.innerText, parseInt(loginForm.elements.cache_size.value), parseInt(loginForm.elements.set_size.value), parseInt(loginForm.elements.block_size.value))
         new_cache.simulate(programFlowInt)
 
+        var element = document.createElement("div");
+        element.innerHTML = "RESULTS";
+        element.className = "h4"
+        $("#info").append(element);
+
         Hits = new_cache.hits
         var element = document.createElement("div");
         element.innerHTML = "Hits: " +  Hits;
@@ -187,20 +192,28 @@ $(document).ready(function () {
         $("#info").append(element);
 
         element = document.createElement("div");
-        element.innerHTML = "Cache Memory";
+        element.innerHTML = "Cache Memory: ";
         $("#info").append(element);
         var blocksetsize = new_cache.cache_size/new_cache.set_size
         for (var s = 0; s < new_cache.numSets; s++) {
           element = document.createElement("div");
-          element.innerHTML = "Set " + s;
+          
+          
+          element.innerHTML = "Set " + s ;
+          
           $("#info").append(element);
           for (var i = 0; i < 2; i++) {
             element = document.createElement("div");
+            element = document.createElement("td");
+            element.className = "px-2";
+          
             if (new_cache.sets[s].blocks[i] != null) {
               element.innerHTML = new_cache.sets[s].blocks[i].data;
+              
             }
             else {
-              element.innerHTML = "BLOCK -";
+              element.innerHTML = "BLOCK -   ";
+            
             }
             $("#info").append(element);
           }
