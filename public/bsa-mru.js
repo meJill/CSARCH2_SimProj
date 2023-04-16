@@ -142,7 +142,8 @@ $(document).ready(function () {
         console.log("Block size " + loginForm.elements.block_size.value);
         console.log("Set size " + loginForm.elements.set_size.value);
         event.preventDefault();
-
+        var el = document.getElementById('info');
+        while ( el.firstChild ) el.removeChild( el.firstChild );
         programFlow = (loginForm.elements.program_flow.value).split(",");
 
         var programFlowInt = programFlow.map(function (x) { 
@@ -158,23 +159,62 @@ $(document).ready(function () {
 
         new_cache = new BlockSetAssociativeCache(loginForm.elements.cache_type.innerText, parseInt(loginForm.elements.cache_size.value), parseInt(loginForm.elements.set_size.value), parseInt(loginForm.elements.block_size.value))
         new_cache.simulate(programFlowInt)
-        document.getElementById("hits").innerHTML = "hits " +  new_cache.hits;
 
-        document.getElementById("misses").innerHTML = "misses " + new_cache.misses;
+        Hits = new_cache.hits
+        var element = document.createElement("div");
+        element.innerHTML = "Hits: " +  Hits;
+        $("#info").append(element);
 
-        document.getElementById("cm").innerHTML = "Cache Memory";
+        Miss = new_cache.misses
+        element = document.createElement("div");
+        element.innerHTML = "Miss: " + Miss;
+        $("#info").append(element);
+
+        miss_penalty = 2 + (parseInt(loginForm.elements.block_size.value)*10)
+        element = document.createElement("div");
+        element.innerHTML = "Miss Penalty: " + miss_penalty;
+        $("#info").append(element);
+
+        hit_rate = Hits / (Hits + Miss)
+        average_memory_access_time = hit_rate + ((1 - hit_rate) * miss_penalty)
+        element = document.createElement("div");
+        element.innerHTML = "Average memory access time: " + average_memory_access_time;
+        $("#info").append(element);
+
+        total_memory_access_time = Hits + (Miss * miss_penalty)
+        element = document.createElement("div");
+        element.innerHTML = "Total memory access time: " + total_memory_access_time;
+        $("#info").append(element);
+
+        element = document.createElement("div");
+        element.innerHTML = "Cache Memory";
+        $("#info").append(element);
         var blocksetsize = new_cache.cache_size/new_cache.set_size
         for (var s = 0; s < new_cache.numSets; s++) {
-          var element = document.createElement("div");
+          element = document.createElement("div");
           element.innerHTML = "Set " + s;
-          $("#cm").append(element);
+          $("#info").append(element);
           for (var i = 0; i < 2; i++) {
-            var element2 = document.createElement("div");
-            element2.innerHTML = new_cache.sets[s].blocks[i].data;
-            $("#cm").append(element2);
+            element = document.createElement("div");
+            if (new_cache.sets[s].blocks[i] != null) {
+              element.innerHTML = new_cache.sets[s].blocks[i].data;
+            }
+            else {
+              element.innerHTML = "BLOCK -";
+            }
+            $("#info").append(element);
           }
         }
+    });
 
-
+    $('#print').click(function(){
+      var a = document.body.appendChild(document.createElement("a"));
+      a.download = "output.txt";
+      a.href = "data:text/html,"
+      el = document.getElementById('info');
+      for (i = 0; i < el.children.length; i++) {
+        a.href += "\n" + (el.children[i].innerHTML)
+      }
+      a.click();
     });
 });
