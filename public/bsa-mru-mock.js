@@ -67,6 +67,7 @@ class Block {
     }
     
     simulate(instruction){
+      console.log(this);
       for (let index = 0; index < instruction.length; index++) {
         console.log("Fetching " + instruction[index])
         this.read(instruction[index])
@@ -127,4 +128,6 @@ class Block {
   }
 
   new_cache = new BlockSetAssociativeCache("Blocks", 4, 2, 4)
-  new_cache.simulate([1,2,3,4,5,4,6,3])
+  array = [1,2,3,4,5,4,6,3]
+  console.log(array.length);
+  new_cache.simulate(array)
