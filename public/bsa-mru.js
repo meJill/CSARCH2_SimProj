@@ -166,6 +166,8 @@ $(document).ready(function () {
         var blocksetsize = new_cache.cache_size/new_cache.set_size
         for (var s = 0; s < new_cache.numSets; s++) {
           var element = document.createElement("div");
+          element.className = "h1";
+          // element.style.cssText = "font-size: larger; padding: 10px;";
           element.innerHTML = "Set " + s;
           $("#cm").append(element);
           for (var i = 0; i < 2; i++) {
