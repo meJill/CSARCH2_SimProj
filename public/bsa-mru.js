@@ -207,7 +207,7 @@ $(document).ready(function () {
           element.innerHTML = "Set " + s ;
           
           $("#info").append(element);
-          for (var i = 0; i < 2; i++) {
+          for (var i = 0; i < new_cache.set_size; i++) {
             element = document.createElement("div");
             element = document.createElement("td");
             element.className = "px-2";
