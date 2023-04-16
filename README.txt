@@ -19,8 +19,10 @@ Task:
 
 How to run:
     First make sure that you have node.js installed within your system, you can check this by going on cmd and typing node -v to check for version control
-    With node.js installed open the folder in cmd and type npm install to check for updates on dependancy modules and then type node index to run the index file to start the web app
-    On a successful run the cmd should display "Server started on port 8000" and you can now open the web app on your default browser by going to the link: http://localhost:8000/
+    With node.js installed open the folder in cmd and type npm install to check for updates on dependancy modules and then type node index to run the index file to start     the web app
+   
+    On a successful run the cmd should display "Server started on port 8000" and you can now open the web app on your default browser by going to the link:
+    http://localhost:8000/
 
 How to use:
     Input Main Memory, Cache Memory Size, Program Flow, Block Size and Set Size. Choosing if you want to calculate Blocks or Words
