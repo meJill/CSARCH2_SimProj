@@ -25,4 +25,4 @@ How to run:
     http://localhost:8000/
 
 How to use:
-    Input Main Memory, Cache Memory Size, Program Flow, Block Size and Set Size. Choosing if you want to calculate Blocks or Words
+    Input Main Memory (words/blocks), Cache Memory Size(words/blocks), Program Flow(words/blocks), Block Size (in words) and Set Size (in blocks). Use the print button to print out values from Result.
