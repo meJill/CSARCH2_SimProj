@@ -69,14 +69,15 @@ $(document).ready(function () {
     
     simulate(instruction){
       for (let index = 0; index < instruction.length; index++) {
-        console.log(instruction[index]);
         console.log("Fetching " + instruction[index])
-        this.read(instruction[index])
+        this.read_block(instruction[index])
         this.print_cache()
       }
     }
 
+    /*
     read(value){
+      console.log(this.configuration)
       if(this.configuration=="Words"){
         this.read_word(value)
       }
@@ -84,12 +85,15 @@ $(document).ready(function () {
         this.read_block(value)
       }
     }
-
+    */
+    /* commented out due to config base on cache memory rather than program flow type (since instruction is program flow)
     read_word(address) {
+      console.log(address)
       const tag = Math.floor(
         address / (this.numSets * this.block_size)
       );
       const block = Math.floor(address / this.block_size)
+      const setIndex = Math.floor(block) % this.numSets;
       const set_num = block % this.numSets;
       const blockData = this.sets[set_num].getBlock(tag);
       const min_addr = block * this.block_size
@@ -103,6 +107,7 @@ $(document).ready(function () {
       this.sets[setIndex].addBlock(tag, newData);
       return newData;
     }
+    */
 
     read_block(block) {
         const tag = Math.floor(

@@ -51,7 +51,7 @@ class Block {
         this.configuration = configuration
         this.set_size = set_size
         this.block_size = block_size
-        if (this.configuration=="Word"){
+        if (this.configuration=="Words"){
             this.numBlocksinCache = cache_size/block_size
             this.numSets = this.numBlocksinCache/set_size
         }  
@@ -70,7 +70,7 @@ class Block {
       console.log(this);
       for (let index = 0; index < instruction.length; index++) {
         console.log("Fetching " + instruction[index])
-        this.read(instruction[index])
+        this.read_block(instruction[index])
         this.print_cache()
       }
     }
@@ -108,6 +108,7 @@ class Block {
           block / (this.numSets)
         );
         const setIndex = Math.floor(block) % this.numSets;
+        console.log("hi" + this.numSets)
         const blockData = this.sets[setIndex].getBlock(tag);
         if (blockData !== null) {
           this.hits++;
@@ -127,7 +128,11 @@ class Block {
       }
   }
 
-  new_cache = new BlockSetAssociativeCache("Blocks", 4, 2, 4)
-  array = [1,2,3,4,5,4,6,3]
-  console.log(array.length);
+  new_cache = new BlockSetAssociativeCache("Words", 4096, 4, 64)
+  array = []
+  for (i = 0; i < 100; i++)
+  {
+    array.push(i)
+  }
+  console.log(array)
   new_cache.simulate(array)
