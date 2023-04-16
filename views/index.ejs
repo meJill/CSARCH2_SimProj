@@ -1,63 +1,84 @@
 <%-include('layouts/bsa-mru-top') -%>
 
+<script src="..\public\bsa-mru.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-lg-7">
-
-  
-            <form action="" name="bsa-table">
+<!------------------------------------------------------------------------------------------------------------->
+            <form  id="bsa-table">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Main Memory</span>
                       </div>
-                    <input type="text" name="mm_size" class="form-control" aria-label="Text input with dropdown button">
+                    <input type="text" id="mm_size" class="form-control" aria-label="Text input with dropdown button">
                     <div class="input-group-prepend">
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" name="mm_type" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                              Dropdown button
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              <li><a class="dropdown-item" href="#">Words</a></li>
-                              <li><a class="dropdown-item" href="#">Blocks</a></li>
-                            </ul>
+                            <select class = "btn btn-secondary dropdown-toggle" name="word-blocks" id="word-blocks1">
+                              <option value="words">Words</option>
+                              <option value="blocks"> Blocks</option>
+                            </select>
                           </div>
                       </div>
                   </div>
-
+<!------------------------------------------------------------------------------------------------------------->
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Cache Memory Size</span>
                       </div>
-                    <input type="text" name="cache_size" class="form-control" aria-label="Text input with dropdown button">
+                    <input type="text" id="cache_size" class="form-control" aria-label="Text input with dropdown button">
                     <div class="input-group-prepend">
-                        
-                            <button class="btn btn-secondary dropdown-toggle" name="cache_type" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                              Dropdown button
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              <li><a class="dropdown-item" href="#">Words</a></li>
-                              <li><a class="dropdown-item" href="#">Blocks</a></li>
-                            </ul>
-                          
+                        <select class = "btn btn-secondary dropdown-toggle" name="word-blocks" id="word-blocks1">
+                          <option value="words">Words</option>
+                          <option value="blocks"> Blocks</option>
+                        </select>
                       </div>
                   </div>
-
+<!------------------------------------------------------------------------------------------------------------->
                   <div class="input-group d-flex flex-row">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="">Block size</span>
                     </div>
-                    <input type="text" name="block_size" class="form-control">
+                    <input type="text" id = "block_size" name="block_size" class="form-control">
                     <div class="col-lg-1"></div>
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="">Set size</span>
                       </div>
-                    <input type="text" name="set_size" class="form-control">
+                    <input type="text" name="set_size" id = "set_size" class="form-control">
                   </div>
                   <div class="mt-4"></div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            
+                    <script>
 
+                      function testDetails(){
+
+                        var mm_size = document.getElementById("mm_size").value
+                        var cache_size = document.getElementById("cache_size").value
+                        var block_size = document.getElementById("block_size").value
+                        var set_size = document.getElementById("set_size").value
+
+                        
+                        if(document.getElementById("word-blocks1").value == 'words')
+                        {
+                          var numBlocksinCache = cache_size/block_size
+                          var numSets = numBlocksinCache/set_size
+                          alert(numSets + " " + numBlocksinCache);
+                        }
+                        else if(document.getElementById("word-blocks1").value == 'blocks')
+                        {
+                          new_cache = new BlockSetAssociativeCache("Blocks", 4, 2, 4)
+                          new_cache.simulate([1,2,3,4,5,4,6,3])
+
+                          var numBlocksinCache = cache_size
+                          var numSets = cache_size/set_size
+                          alert(numSets + " " + numBlocksinCache);
+                        }
+
+                        
+                      }
+
+
+                    </script>
+                  <button type="submit" class="btn btn-primary" id = "submittest" onClick="testDetails()">Submit</button>
+            </form>
         </div>
     </div>
 </div>
